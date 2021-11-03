@@ -17,7 +17,8 @@ import { CSV } from "https://js.sabae.cc/CSV.js";
 import { create } from "https://js.sabae.cc/stdcomp.js";
 
 onload = async () => {
-  const data = CSV.toJSON(await CSV.fetch("https://code4fukui.github.io/JNet21/j-net21_support-list.csv"));
+  cosnt url = "https://code4fukui.github.io/JNet21/j-net21_support-list.csv";
+  const data = CSV.toJSON(await CSV.fetch(url));
   data.reverse();
   const show = () => {
     container.innerHTML = "";
@@ -29,7 +30,7 @@ onload = async () => {
       create("div", container).innerHTML = `
         <h2><a href=${d.url}>${d.title}</a></h2>
         <div>${d.date} - ${d.subtitle} - ${d.category}</div>
-        <div>${d.tags.split(",").map(tag => `<span class=tag>${tag}</span>`).join("")}</div>
+        <div>${d.tags?.split(",").map(tag => `<span class=tag>${tag}</span>`).join("")}</div>
         <div class=body>${d.body}</div>`;
     });
   };
